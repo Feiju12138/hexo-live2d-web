@@ -1,5 +1,5 @@
 
-# Hexo Live2D Web
+# Live2D Web
 
 Fork from `https://github.com/stevenjoezhang/live2d-widget`
 
