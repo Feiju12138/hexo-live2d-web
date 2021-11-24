@@ -18,6 +18,7 @@ function loadWidget(config) {
 			<canvas id="live2d" width="800" height="800"></canvas>
 			<div id="waifu-tool">
 				<span class="fa fa-lg fa-comment"></span>
+				<span class="fa fa-lg fa-comments"></span>
 				<span class="fa fa-lg fa-paper-plane"></span>
 				<span class="fa fa-lg fa-user-circle"></span>
 				<span class="fa fa-lg fa-street-view"></span>
@@ -37,7 +38,7 @@ function loadWidget(config) {
 	let userAction = false,
 		userActionTimer,
 		messageTimer,
-		messageArray = ["好久不见，日子过得好快呢……", "大坏蛋！你都多久没理人家了呀，嘤嘤嘤～", "嗨～快来逗我玩吧！", "拿小拳拳锤你胸口！", "记得把小家加入 Adblock 白名单哦！"];
+		messageArray = ["好久不见，日子过得好快呢……", "大坏蛋！你都多久没理人家了呀，嘤嘤嘤~", "嗨~快来逗我玩吧！", "拿小拳拳锤你胸口！", "记得把小家加入 Adblock 白名单哦！"];
 	window.addEventListener("mousemove", () => userAction = true);
 	window.addEventListener("keydown", () => userAction = true);
 	setInterval(() => {
@@ -54,13 +55,14 @@ function loadWidget(config) {
 
 	(function registerEventListener() {
 		document.querySelector("#waifu-tool .fa-comment").addEventListener("click", showHitokoto);
+		document.querySelector("#waifu-tool .fa-comments").addEventListener("click", chatTogether);
 		document.querySelector("#waifu-tool .fa-paper-plane").addEventListener("click", () => {
 			if (window.Asteroids) {
 				if (!window.ASTEROIDSPLAYERS) window.ASTEROIDSPLAYERS = [];
 				window.ASTEROIDSPLAYERS.push(new Asteroids());
 			} else {
 				const script = document.createElement("script");
-				script.src = "https://cdn.jsdelivr.net/gh/stevenjoezhang/asteroids/asteroids.js";
+				script.src = "./asteroids.js";
 				document.head.appendChild(script);
 			}
 		});
@@ -72,7 +74,7 @@ function loadWidget(config) {
 			Live2D.captureFrame = true;
 		});
 		document.querySelector("#waifu-tool .fa-info-circle").addEventListener("click", () => {
-			open("https://feiju12138.github.io");
+			open("/about");
 		});
 		document.querySelector("#waifu-tool .fa-times").addEventListener("click", () => {
 			localStorage.setItem("waifu-display", Date.now());
@@ -92,7 +94,7 @@ function loadWidget(config) {
 			showMessage("你都复制了些什么呀，转载要记得加上出处哦！", 6000, 9);
 		});
 		window.addEventListener("visibilitychange", () => {
-			if (!document.hidden) showMessage("哇，你终于回来了～", 6000, 9);
+			if (!document.hidden) showMessage("哇，你终于回来了~", 6000, 9);
 		});
 	})();
 
@@ -104,9 +106,9 @@ function loadWidget(config) {
 			else if (now > 7 && now <= 11) text = "上午好！工作顺利嘛，不要久坐，多起来走动走动哦！";
 			else if (now > 11 && now <= 13) text = "中午了，工作了一个上午，现在是午餐时间！";
 			else if (now > 13 && now <= 17) text = "午后很容易犯困呢，今天的运动目标完成了吗？";
-			else if (now > 17 && now <= 19) text = "傍晚了！窗外夕阳的景色很美丽呢，最美不过夕阳红～";
+			else if (now > 17 && now <= 19) text = "傍晚了！窗外夕阳的景色很美丽呢，最美不过夕阳红~";
 			else if (now > 19 && now <= 21) text = "晚上好，今天过得怎么样？";
-			else if (now > 21 && now <= 23) text = ["已经这么晚了呀，早点休息吧，晚安～", "深夜时要爱护眼睛呀！"];
+			else if (now > 21 && now <= 23) text = ["已经这么晚了呀，早点休息吧，晚安~", "深夜时要爱护眼睛呀！"];
 			else text = "你是夜猫子呀？这么晚还不睡觉，明天起的来嘛？";
 		} else if (document.referrer !== "") {
 			const referrer = new URL(document.referrer),
@@ -127,14 +129,40 @@ function loadWidget(config) {
 		fetch("https://v1.hitokoto.cn")
 			.then(response => response.json())
 			.then(result => {
-				const text = `这句一言来自 <span>「${result.from}」</span>，是 <span>${result.creator}</span> 在 hitokoto.cn 投稿的。`;
 				showMessage(result.hitokoto, 6000, 9);
-				setTimeout(() => {
-					showMessage(text, 4000, 9);
-				}, 6000);
 			});
 	}
-
+	
+	function chatTogether() {
+		// 获取气泡对象
+		const tips = document.getElementById("waifu-tips");
+		// 先清空上一次的气泡
+		sessionStorage.removeItem("waifu-text");
+		tips.classList.remove("waifu-tips-active");
+		// 添加一个文本域气泡
+		let text = "<textarea cols='29' rows='5' id='chatInput'>";
+		showMessage(text, 60000, 8);
+		// 获取输入框对象
+		let chat = document.getElementById('chatInput');
+		// 自动成为焦点
+		chat.focus();
+		// 添加键盘按下事件
+		chat.addEventListener("onkeydown", event => {
+			let {keyCode,target} = event;
+			if(keyCode === 13) {
+				// 输入回车后立即清空气泡
+				sessionStorage.removeItem("waifu-text");
+				tips.classList.remove("waifu-tips-active");
+				// 对接青云客API
+				fetch("https://api.qingyunke.com/api.php?key=free&appid=0&msg="+target.value)
+					.then(response => response.json())
+					.then(result => {
+						showMessage(result.content, 6000, 9);
+					});
+			}
+		});
+	}
+	
 	function showMessage(text, timeout, priority) {
 		if (!text || (sessionStorage.getItem("waifu-text") && sessionStorage.getItem("waifu-text") > priority)) return;
 		if (messageTimer) {
@@ -151,7 +179,7 @@ function loadWidget(config) {
 			tips.classList.remove("waifu-tips-active");
 		}, timeout);
 	}
-
+	
 	(function initModel() {
 		let modelId = localStorage.getItem("modelId"),
 			modelTexturesId = localStorage.getItem("modelTexturesId");

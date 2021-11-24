@@ -82,7 +82,7 @@
 	opacity: 0;
 	position: absolute;
 	right: -10px;
-	top: 70px;
+	top: 50px;
 	transition: opacity 1s;
 }
 
@@ -303,4 +303,13 @@
 	0%, 100% {
 		transform: translate(0, 0) rotate(0);
 	}
+}
+
+/* 聊天窗口的样式 */
+#chatInput {
+	border: none;
+	background-color: rgba(0, 0, 0, 0);
+}
+#chatInput:focus {
+	outline: none;
 }
