@@ -139,7 +139,7 @@ function loadWidget(config) {
 		// 先清空上一次的气泡
 		sessionStorage.removeItem("waifu-text");
 		tips.classList.remove("waifu-tips-active");
-		// 添加一个文本域气泡
+		// 在气泡上添加文本域
 		let text = "<textarea cols='29' rows='5' id='chatInput'>";
 		showMessage(text, 60000, 8);
 		// 获取输入框对象
@@ -147,20 +147,20 @@ function loadWidget(config) {
 		// 自动成为焦点
 		chat.focus();
 		// 添加键盘按下事件
-		chat.addEventListener("onkeydown", event => {
-			let {keyCode,target} = event;
+		chat.onkeydown = function (e) {
+			let {keyCode,target} = e;
 			if(keyCode === 13) {
 				// 输入回车后立即清空气泡
 				sessionStorage.removeItem("waifu-text");
 				tips.classList.remove("waifu-tips-active");
-				// 对接青云客API
 				fetch("https://api.qingyunke.com/api.php?key=free&appid=0&msg="+target.value)
 					.then(response => response.json())
 					.then(result => {
 						showMessage(result.content, 6000, 9);
 					});
 			}
-		});
+		}
+		
 	}
 	
 	function showMessage(text, timeout, priority) {
