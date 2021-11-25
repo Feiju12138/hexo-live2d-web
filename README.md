@@ -6,7 +6,7 @@ Fork from `https://github.com/stevenjoezhang/live2d-widget`
 ## CDN引用地址
 
 ``` sh
-https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@2.5/autoload.js
+https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@2.6/autoload.js
 ```
 
 ## 新特性
