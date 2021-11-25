@@ -153,8 +153,8 @@ function loadWidget(config) {
 				// 输入回车后立即清空气泡
 				sessionStorage.removeItem("waifu-text");
 				tips.classList.remove("waifu-tips-active");
-				fetch("https://api.qingyunke.com/api.php?key=free&appid=0&msg="+target.value)
-					.then(response => response.json())
+				fetch("https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@2.3/qingyunke.php?text="+target.value)
+				  .then(response => response.json())
 					.then(result => {
 						showMessage(result.content, 6000, 9);
 					});
