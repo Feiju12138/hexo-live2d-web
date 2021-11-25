@@ -1,6 +1,6 @@
 <?php
 // 允许跨域请求
-header('Access-Control-Allow-Origin:*');
+header('Content-type: application/json; Access-Control-Allow-Origin: *');
 // 发送请求的函数
 function http_request_json($url)
 {
