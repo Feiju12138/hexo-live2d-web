@@ -1,20 +1,26 @@
 
-# Live2D Web 2.x
+# Live2D Web 3.x
 
 Fork from `https://github.com/stevenjoezhang/live2d-widget`
 
 ## CDN引用地址
 
 ``` sh
-https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@2.8/autoload.js
+https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@3.0/autoload.js
 ```
 
 ## 新特性
 
-- 把`asteroids.js`小飞机组件添加到了本项目内，让本项目引用自身实现小飞机
-- ~新增青云客的人工智(zhi)能(zhang)聊天组件~
-- 青云客无论如何也没办法跨域访问（因为想要纯前端实现），于是换了思知机器人（直接允许跨域访问），然后问题就解决了
+- 把`model/`和`model_list.json`整合到同一个项目下了
+  - 需要修改皮肤可以自行修改`model/`下的文件，保持相同的目录层级就可以了
 
+## 参考文献
 
+[https://github.com/fghrsh/demo](https://github.com/fghrsh/demo)
+[https://github.com/fghrsh/live2d_api](https://github.com/fghrsh/live2d_api)
+[https://github.com/stevenjoezhang/live2d-widget](https://github.com/stevenjoezhang/live2d-widget)
 
+## 版权声明
+
+API内所有模型版权均属于原作者，仅供研究学习，不得用于商业用途
 
