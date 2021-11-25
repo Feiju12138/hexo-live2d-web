@@ -17,7 +17,9 @@ https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@3.0/autoload.js
 ## 参考文献
 
 [https://github.com/fghrsh/demo](https://github.com/fghrsh/demo)
+
 [https://github.com/fghrsh/live2d_api](https://github.com/fghrsh/live2d_api)
+
 [https://github.com/stevenjoezhang/live2d-widget](https://github.com/stevenjoezhang/live2d-widget)
 
 ## 版权声明
