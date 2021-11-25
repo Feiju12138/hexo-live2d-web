@@ -140,7 +140,7 @@ function loadWidget(config) {
 		sessionStorage.removeItem("waifu-text");
 		tips.classList.remove("waifu-tips-active");
 		// 在气泡上添加文本域
-		let text = "<textarea cols='29' rows='5' id='chatInput'>";
+		let text = "<textarea cols='29' rows='4' id='chatInput'>";
 		showMessage(text, 60000, 8);
 		// 获取输入框对象
 		let chat = document.getElementById('chatInput');
@@ -153,10 +153,10 @@ function loadWidget(config) {
 				// 输入回车后立即清空气泡
 				sessionStorage.removeItem("waifu-text");
 				tips.classList.remove("waifu-tips-active");
-				fetch("https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@2.7/qingyunke/index.php?text="+target.value)
+				fetch("https://api.ownthink.com/bot?appid=xiaosi&spoken="+target.value)
 				  .then(response => response.json())
 					.then(result => {
-						showMessage(result.content, 6000, 9);
+						showMessage(result.data.info.text, 6000, 9);
 					});
 			}
 		}
