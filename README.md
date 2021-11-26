@@ -6,10 +6,10 @@ Fork from `https://github.com/stevenjoezhang/live2d-widget`
 ## CDN引用地址
 
 ``` html
-<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@4.1/autoload.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@4.2/autoload.js"></script>
 
 // 引入APlayer扩展（请在创建APlayer的对象ap之后引入这个插件）
-<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@4.1/live2d-aplayer.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@4.2/live2d-aplayer.js"></script>
 ```
 
 ## 4.x 新特性

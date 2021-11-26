@@ -10,7 +10,7 @@
 		"text": ["想和人家聊聊天嘛？"]
 	}, {
 		"selector": "#waifu-tool .fa-paper-plane",
-		"text": ["要不要来玩飞机大战？(上-前进/左右-旋转/空格-发射)"]
+		"text": ["要不要来玩飞机大战？(上-前进/左右-旋转/空格-发射/ESC-退出)"]
 	}, {
 		"selector": "#waifu-tool .fa-user-circle",
 		"text": ["想要看人家妹妹嘛？", "喜欢人家妹妹嘛？"]
