@@ -1,18 +1,22 @@
 
-# Live2D Web 3.x
+# Live2D Web 4.x
 
 Fork from `https://github.com/stevenjoezhang/live2d-widget`
 
 ## CDN引用地址
 
-``` sh
-https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@3.0/autoload.js
+``` html
+<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@4.0/autoload.js"></script>
+
+// 请在创建APlayer的对象ap之后引入这个插件（非必要）
+<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@4.0/live2d-aplayer.js"></script>
 ```
 
-## 新特性
+## 4.x 新特性
 
-- 把`model/`和`model_list.json`整合到同一个项目下了
-  - 需要修改皮肤可以自行修改`model/`下的文件，保持相同的目录层级就可以了
+- 整合了前后端的调用路径
+
+- 整合了APlayer，实现演唱歌词
 
 ## 参考文献
 
@@ -21,6 +25,8 @@ https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@3.0/autoload.js
 [https://github.com/fghrsh/live2d_api](https://github.com/fghrsh/live2d_api)
 
 [https://github.com/stevenjoezhang/live2d-widget](https://github.com/stevenjoezhang/live2d-widget)
+
+[https://aplayer.js.org/#/home](https://aplayer.js.org/#/home)
 
 ## 版权声明
 
