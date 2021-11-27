@@ -1,15 +1,36 @@
 
-# Live2D Web 4.x
+# Live2D Web
 
 Fork from `https://github.com/stevenjoezhang/live2d-widget`
 
-## CDN引用地址
+## 傻瓜式一键引入最新版
 
 ``` html
-// 引入APlayer扩展（请在创建APlayer的对象ap之后引入这个插件）
-<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@4.4/live2d-aplayer.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@latest/autoload.js"></script>
+```
 
-// 引入Live2d（如果需要引入APlayer扩展，请在引入APlayer扩展后引入Live2d）
+## 2.x 引入
+
+- 增加了聊天功能
+
+``` html
+<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@2.8/autoload.js"></script>
+```
+
+## 3.x 引入
+
+- 整合了前后端到一个项目，如果有自定义后端模型和皮肤的需求，请使用旧版
+
+``` html
+<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@3.0/autoload.js"></script>
+```
+
+## 4.x 引入
+
+- 与APlayer联动
+- 添加了控制APlayer播放器状态和点歌的功能
+
+``` html
 <script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@4.4/autoload.js"></script>
 ```
 
