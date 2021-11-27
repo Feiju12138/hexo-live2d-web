@@ -121,6 +121,9 @@ function loadWidget(config) {
 		} else {
 			text = `欢迎阅读<span>「${document.title.split(" - ")[0]}」</span>`;
 		}
+		if (ap) {
+			text += " 检测到APlayer啦，开始联动！你可以对我说：来点音乐";
+		}
 		showMessage(text, 7000, 8);
 	})();
 
@@ -153,11 +156,51 @@ function loadWidget(config) {
 				// 输入回车后立即清空气泡
 				sessionStorage.removeItem("waifu-text");
 				tips.classList.remove("waifu-tips-active");
-				fetch("https://api.ownthink.com/bot?appid=xiaosi&spoken="+target.value)
-				  .then(response => response.json())
-					.then(result => {
-						showMessage(result.data.info.text, 6000, 9);
-					});
+				
+				if (CommandAPlayer) {
+					console.log("Aplayer可以联动");
+					if (target.value === "播放" || target.value === "开始" || target.value === "继续" || target.value === "播放音乐" || target.value === "来点音乐") {
+						CommandAPlayer.commandPlay();
+					} else if(target.value === "暂停" || target.value === "停止") {
+						CommandAPlayer.commandPause();
+					} else if(target.value === "上一首") {
+						CommandAPlayer.commandSkipBack();
+					} else if(target.value === "下一首") {
+						CommandAPlayer.commandSkipForward();
+					} else if(target.value === "单曲循环") {
+						CommandAPlayer.commandLoopOne();
+					} else if(target.value === "不循环") {
+						CommandAPlayer.commandLoopNone();
+					} else if(target.value === "顺序播放" || target.value === "取消单曲循环" || target.value === "取消随机播放") {
+						CommandAPlayer.commandLoopAllList();
+					} else if(target.value === "随机播放") {
+						CommandAPlayer.commandLoopAllRandom();
+					} else if(target.value === "大点声" || target.value === "音量高一点") {
+						CommandAPlayer.commandVolumeUp();
+					} else if(target.value === "小点声" || target.value === "音量低一点") {
+						CommandAPlayer.commandVolumeDown();
+					} else if(target.value === "最大声" || target.value === "音量调到最大") {
+						CommandAPlayer.commandVolumeMax();
+					} else if(target.value === "别出声" || target.value === "静音") {
+						CommandAPlayer.commandVolumeZero();
+					} else if(target.value === "取消静音") {
+						CommandAPlayer.commandUndoVolumeZero();
+					} else {
+						fetch("https://api.ownthink.com/bot?appid=xiaosi&spoken="+target.value)
+							.then(response => response.json())
+							.then(result => {
+								showMessage(result.data.info.text, 6000, 9);
+							});
+					}
+				} else {
+					console.log("Aplayer不可以联动");
+					fetch("https://api.ownthink.com/bot?appid=xiaosi&spoken="+target.value)
+						.then(response => response.json())
+						.then(result => {
+							showMessage(result.data.info.text, 6000, 9);
+						});
+				}
+				
 			}
 		}
 		
