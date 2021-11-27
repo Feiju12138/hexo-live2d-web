@@ -94,6 +94,24 @@ let CommandAPlayer =  {
   commandUndoVolumeZero: function() {
     ap.volume(volumeArr[volumeIndex], true);
     showMessage(`音量已调到${volumeArr[volumeIndex]*100}%`, 2000, 2);
+  },
+  commandAddMusic: function(songName, songAritst, songCover, songUrl, songLrc) {
+  
+    // 清空播放列表
+    ap.list.clear();
+    // 添加一首歌
+    ap.list.add({
+      name: songName,
+      artist: songAritst,
+      cover: songCover,
+      url: songUrl,
+      lrc: songLrc
+    });
+    // 开始播放
+    ap.play();
+    
   }
 }
+
+
 

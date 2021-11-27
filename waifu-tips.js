@@ -185,6 +185,48 @@ function loadWidget(config) {
 						CommandAPlayer.commandVolumeZero();
 					} else if(target.value === "取消静音") {
 						CommandAPlayer.commandUndoVolumeZero();
+					} else if (target.value.indexOf("放一首") === 0) {
+						
+						let keywords = target.value.substr(3);
+						
+						fetch("https://apimusic.postgraduate.top/search?offset=0&limit=30&keywords="+keywords)
+								.then(response => response.json())
+								.then(result => {
+									if (result.result.songs.length !== 0) {
+										
+										let songId = result.result.songs[0].id;
+										
+										let songName;
+										let songArtist;
+										let songCover;
+										let songUrl;
+										let songLrc;
+										// 获取歌曲基本信息
+										fetch("https://apimusic.postgraduate.top/song/detail?ids=" + songId)
+												.then(response => response.json())
+												.then(result => {
+													songName = result.songs[0].name;
+													songArtist = result.songs[0].ar[0].name;
+													songCover = result.songs[0].al.picUrl;
+													// 获取歌曲链接
+													fetch("https://apimusic.postgraduate.top/song/url?id=" + songId)
+															.then(response => response.json())
+															.then(result => {
+																songUrl = result.data[0].url;
+																// 获取歌词
+																fetch("https://apimusic.postgraduate.top/lyric?id=" + songId)
+																		.then(response => response.json())
+																		.then(result => {
+																			songLrc = result.lrc.lyric;
+																			
+																			CommandAPlayer.commandAddMusic(songName, songArtist, songCover, songUrl, songLrc);
+																			
+																		});
+															});
+												});
+										
+									}
+								});
 					} else {
 						fetch("https://api.ownthink.com/bot?appid=xiaosi&spoken="+target.value)
 							.then(response => response.json())
