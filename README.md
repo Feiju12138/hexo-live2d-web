@@ -6,10 +6,11 @@ Fork from `https://github.com/stevenjoezhang/live2d-widget`
 ## CDN引用地址
 
 ``` html
-<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@4.2/autoload.js"></script>
-
 // 引入APlayer扩展（请在创建APlayer的对象ap之后引入这个插件）
-<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@4.2/live2d-aplayer.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@4.3/live2d-aplayer.js"></script>
+
+// 如果需要引入APlayer扩展，请在引入APlayer扩展后引入Live2d
+<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@4.3/autoload.js"></script>
 ```
 
 ## 4.x 新特性
@@ -20,6 +21,8 @@ Fork from `https://github.com/stevenjoezhang/live2d-widget`
   - 如果想要实现APlayer扩展，只需要额外引入扩展即可
   - 如果__不需要扩展__或者项目中没有APlayer，只需要__不引入扩展__即可
   - APlayer的引入方法详情见说明文档：[https://aplayer.js.org/#/home](https://aplayer.js.org/#/home)
+
+- 新增了使用Lived控制播放器播放状态的功能
 
 ## 参考文献
 
