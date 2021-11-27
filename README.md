@@ -22,7 +22,7 @@ Fork from `https://github.com/stevenjoezhang/live2d-widget`
   - 如果__不需要扩展__或者项目中没有APlayer，只需要__不引入扩展__即可
   - APlayer的引入方法详情见说明文档：[https://aplayer.js.org/#/home](https://aplayer.js.org/#/home)
 
-- 新增了使用Lived控制播放器播放状态的功能
+- 新增了使用Live2d控制播放器播放状态的功能
 
 ## 参考文献
 
