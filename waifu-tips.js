@@ -168,36 +168,57 @@ function loadWidget(config) {
 						return;
 					// 以下是我的自定义命令，可能不通用
 					case "召唤雪花":
+						
 						let snowCSS = document.createElement("link");
-						snowCSS.rel = "stylesheet";
-						snowCSS.href = "/snow/index.css";
+						snowCSS.setAttribute("rel", "stylesheet");
+						snowCSS.setAttribute("href", "/snow/index.css");
 						let snowJQ = document.createElement("script");
-						snowJQ.type = "text/javascript";
-						snowJQ.src = "/snow/jquery-1.7.2.min.js";
+						snowJQ.setAttribute("type", "text/javascript");
+						snowJQ.setAttribute("src", "/snow/jquery-1.7.2.min.js");
 						let snowJS = document.createElement("script");
-						snowJS.type = "text/javascript";
-						snowJS.src = "/snow/index.js";
+						snowJS.setAttribute("type", "text/javascript");
+						snowJS.setAttribute("src", "/snow/index.js");
 						let snowDiv = document.createElement("div");
-						snowDiv.class = "snow-container";
+						snowDiv.setAttribute("class", "snow-container");
+						
+						document.body.appendChild(snowCSS);
+						document.body.appendChild(snowJQ);
+						document.body.appendChild(snowJS);
+						document.body.appendChild(snowDiv);
+						
+						showMessage(`下雪啦~`, 2000, 2);
 						return;
 					case "召唤冰霜":
+						
 						let freezeCSS = document.createElement("link");
-						freezeCSS.rel = "stylesheet";
-						freezeCSS.href = "/freeze/index.css";
-						let freezeDiv = document.createElement("div");
-						freezeDiv.innerHTML = "";
-						let freeze = document.createElement("div");
-						freeze.innerHTML =
-								"<div class=\"hp_special_experience\">" +
-								"<div class=\"hol_frames_cont\">" +
-								"<div class=\"frame fader frost show\">" +
-								"<div class=\"frame_sprite frame_left\"></div>" +
-								"<div class=\"frame_sprite frame_right\"></div>" +
-								"<div class=\"frame_sprite frame_top\"></div>" +
-								"<div class=\"frame_sprite frame_bottom\"></div>" +
-								"</div>" +
-								"</div>" +
-								"</div>";
+						freezeCSS.setAttribute("rel", "stylesheet");
+						freezeCSS.setAttribute("href", "/freeze/index.css");
+						
+						let freezeDiv1 = document.createElement("div");
+						freezeDiv1.setAttribute("class", "hp_special_experience");
+						let freezeDiv2 = document.createElement("div");
+						freezeDiv2.setAttribute("class", "hol_frames_cont");
+						let freezeDiv3 = document.createElement("div");
+						freezeDiv3.setAttribute("class", "frame fader frost show");
+						let freezeDiv4 = document.createElement("div");
+						freezeDiv4.setAttribute("class", "frame_sprite frame_left");
+						let freezeDiv5 = document.createElement("div");
+						freezeDiv5.setAttribute("class", "frame_sprite frame_right");
+						let freezeDiv6 = document.createElement("div");
+						freezeDiv6.setAttribute("class", "frame_sprite frame_top");
+						let freezeDiv7 = document.createElement("div");
+						freezeDiv7.setAttribute("class", "frame_sprite frame_bottom");
+						
+						document.body.appendChild(freezeCSS);
+						freezeDiv1.appendChild(freezeDiv2);
+						freezeDiv2.appendChild(freezeDiv3);
+						freezeDiv3.appendChild(freezeDiv4);
+						freezeDiv3.appendChild(freezeDiv5);
+						freezeDiv3.appendChild(freezeDiv6);
+						freezeDiv3.appendChild(freezeDiv7);
+						document.body.appendChild(freezeDiv1);
+						
+						showMessage(`结冰啦~`, 2000, 2);
 						return;
 					case "捉住小猫":
 						open("/egg/catch-the-cat/");

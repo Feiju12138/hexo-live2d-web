@@ -41,7 +41,7 @@ Fork from `https://github.com/stevenjoezhang/live2d-widget`
 - 可以自己在`waifu-tips.js`文件内追加自定义命令
 
 ``` html
-<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@5.2/autoload.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@5.3/autoload.js"></script>
 ```
 
 ## 参考文献
