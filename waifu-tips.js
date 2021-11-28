@@ -168,15 +168,26 @@ function loadWidget(config) {
 						return;
 					// 以下是我的自定义命令，可能不通用
 					case "召唤雪花":
-						let snow = document.createElement("div");
-						snow.innerHTML = "<script type=\"text/javascript\" src=\"/snow/jquery-1.7.2.min.js\"></script>" +
-								"<script type=\"text/javascript\" src=\"/snow/snow.js\"></script>" +
-								"<style type=\"text/css\">.snow-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;}</style>" +
-								"<div class=\"snow-container\"></div>";
+						let snowCSS = document.createElement("link");
+						snowCSS.rel = "stylesheet";
+						snowCSS.href = "/snow/index.css";
+						let snowJQ = document.createElement("script");
+						snowJQ.type = "text/javascript";
+						snowJQ.src = "/snow/jquery-1.7.2.min.js";
+						let snowJS = document.createElement("script");
+						snowJS.type = "text/javascript";
+						snowJS.src = "/snow/index.js";
+						let snowDiv = document.createElement("div");
+						snowDiv.class = "snow-container";
 						return;
 					case "召唤冰霜":
+						let freezeCSS = document.createElement("link");
+						freezeCSS.rel = "stylesheet";
+						freezeCSS.href = "/freeze/index.css";
+						let freezeDiv = document.createElement("div");
+						freezeDiv.innerHTML = "";
 						let freeze = document.createElement("div");
-						freeze.innerHTML = "<link rel=\"stylesheet\" href=\"/freeze/index.css\">" +
+						freeze.innerHTML =
 								"<div class=\"hp_special_experience\">" +
 								"<div class=\"hol_frames_cont\">" +
 								"<div class=\"frame fader frost show\">" +
