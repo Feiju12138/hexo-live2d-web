@@ -100,6 +100,7 @@ function loadWidget(config) {
 		window.addEventListener("visibilitychange", () => {
 			if (!document.hidden) showMessage("哇，你终于回来了~", 6000, 9);
 		});
+		
 	})();
 
 	(function welcomeMessage() {
@@ -125,9 +126,22 @@ function loadWidget(config) {
 		} else {
 			text = `欢迎阅读<span>「${document.title.split(" - ")[0]}」</span>`;
 		}
+		
+		// APlayer联动
 		if (ap) {
 			text += " 检测到APlayer啦，开始联动！你可以对我说：来点音乐";
+			
+			let lrcTmp = "";
+			ap.on("timeupdate", function() {
+				let lrcCurrent = document.querySelector(".aplayer-lrc-contents .aplayer-lrc-current").innerHTML;
+				if (lrcTmp !== lrcCurrent) {
+					lrcTmp = lrcCurrent;
+					// console.log(lrcCurrent);
+					showMessage(lrcCurrent, 2000, 1);
+				}
+			});
 		}
+		
 		showMessage(text, 7000, 8);
 	})();
 
