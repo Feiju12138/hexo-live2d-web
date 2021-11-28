@@ -168,23 +168,25 @@ function loadWidget(config) {
 						return;
 					// 以下是我的自定义命令，可能不通用
 					case "召唤雪花":
-						document.write("<script type=\"text/javascript\" src=\"/snow/jquery-1.7.2.min.js\"></script>");
-						document.write("<script type=\"text/javascript\" src=\"/snow/snow.js\"></script>");
-						document.write("<style type=\"text/css\">.snow-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;}</style>");
-						document.write("<div class=\"snow-container\"></div>");
+						let snow = document.createElement("div");
+						snow.innerHTML = "<script type=\"text/javascript\" src=\"/snow/jquery-1.7.2.min.js\"></script>" +
+								"<script type=\"text/javascript\" src=\"/snow/snow.js\"></script>" +
+								"<style type=\"text/css\">.snow-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;}</style>" +
+								"<div class=\"snow-container\"></div>";
 						return;
 					case "召唤冰霜":
-						document.write("<link rel=\"stylesheet\" href=\"/freeze/index.css\">");
-						document.write("<div class=\"hp_special_experience\">");
-						document.write("<div class=\"hol_frames_cont\">");
-						document.write("<div class=\"frame fader frost show\">");
-						document.write("<div class=\"frame_sprite frame_left\"></div>");
-						document.write("<div class=\"frame_sprite frame_right\"></div>");
-						document.write("<div class=\"frame_sprite frame_top\"></div>");
-						document.write("<div class=\"frame_sprite frame_bottom\"></div>");
-						document.write("</div>");
-						document.write("</div>");
-						document.write("</div>");
+						let freeze = document.createElement("div");
+						freeze.innerHTML = "<link rel=\"stylesheet\" href=\"/freeze/index.css\">" +
+								"<div class=\"hp_special_experience\">" +
+								"<div class=\"hol_frames_cont\">" +
+								"<div class=\"frame fader frost show\">" +
+								"<div class=\"frame_sprite frame_left\"></div>" +
+								"<div class=\"frame_sprite frame_right\"></div>" +
+								"<div class=\"frame_sprite frame_top\"></div>" +
+								"<div class=\"frame_sprite frame_bottom\"></div>" +
+								"</div>" +
+								"</div>" +
+								"</div>";
 						return;
 					case "捉住小猫":
 						open("/egg/catch-the-cat/");
