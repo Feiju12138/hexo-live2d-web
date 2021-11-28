@@ -31,22 +31,18 @@ Fork from `https://github.com/stevenjoezhang/live2d-widget`
 - 添加了控制APlayer播放器状态和点歌的功能
 
 ``` html
+<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@4.4/live2d-aplayer.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@4.4/autoload.js"></script>
 ```
 
-## 4.x 新特性
+## 5.x 引入
 
-- 整合了前后端的调用路径
+- 优化了代码，使APlayer联动不再需要引入其他文件
+- 可以自己在`waifu-tips.js`文件内追加自定义命令
 
-- 整合了APlayer，实现演唱歌词
-  - 如果想要实现APlayer扩展，只需要额外引入扩展即可
-  - 如果**不需要扩展**或者项目中没有APlayer，只需要**不引入扩展**即可
-  - APlayer的引入方法详情见说明文档：[https://aplayer.js.org/#/home](https://aplayer.js.org/#/home)
-
-- 新增了使用Live2d控制播放器播放状态的功能
-
-- 新增了使用Live2d搜歌的功能
-  - 由于歌词是从网络获取的，所以APlayer在创建对象时需要指定歌词格式为JS字符串（`lrcType: 1`），否则无法渲染
+``` html
+<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@5.0/autoload.js"></script>
+```
 
 ## 参考文献
 

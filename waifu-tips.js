@@ -1,4 +1,8 @@
+// APayer的音量变量
+let volumeArr = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
+let volumeIndex = 7;
 
+// 加载live2d
 function loadWidget(config) {
 	let { waifuPath, apiPath, cdnPath } = config;
 	let useCDN = false, modelList;
@@ -157,50 +161,103 @@ function loadWidget(config) {
 				sessionStorage.removeItem("waifu-text");
 				tips.classList.remove("waifu-tips-active");
 				
-				if (CommandAPlayer) {
-					console.log("Aplayer可以联动");
-					if (target.value === "播放" || target.value === "开始" || target.value === "继续" || target.value === "播放音乐" || target.value === "来点音乐") {
-						CommandAPlayer.commandPlay();
-					} else if(target.value === "暂停" || target.value === "停止") {
-						CommandAPlayer.commandPause();
-					} else if(target.value === "上一首") {
-						CommandAPlayer.commandSkipBack();
-					} else if(target.value === "下一首") {
-						CommandAPlayer.commandSkipForward();
-					} else if(target.value === "单曲循环") {
-						CommandAPlayer.commandLoopOne();
-					} else if(target.value === "不循环") {
-						CommandAPlayer.commandLoopNone();
-					} else if(target.value === "顺序播放" || target.value === "取消单曲循环" || target.value === "取消随机播放") {
-						CommandAPlayer.commandLoopAllList();
-					} else if(target.value === "随机播放") {
-						CommandAPlayer.commandLoopAllRandom();
-					} else if(target.value === "大点声" || target.value === "音量高一点") {
-						CommandAPlayer.commandVolumeUp();
-					} else if(target.value === "小点声" || target.value === "音量低一点") {
-						CommandAPlayer.commandVolumeDown();
-					} else if(target.value === "最大声" || target.value === "音量调到最大") {
-						CommandAPlayer.commandVolumeMax();
-					} else if(target.value === "别出声" || target.value === "静音") {
-						CommandAPlayer.commandVolumeZero();
-					} else if(target.value === "取消静音") {
-						CommandAPlayer.commandUndoVolumeZero();
-					} else if (target.value.indexOf("放一首") === 0) {
-						
+				// 站点的命令
+				switch (target.value) {
+					case "回到顶部":
+						document.documentElement.scrollTop = 0;
+						return;
+					// 以下是我的自定义命令，可能不通用
+					case "召唤雪花":
+						document.write("<script type=\"text/javascript\" src=\"/snow/jquery-1.7.2.min.js\"></script>");
+						document.write("<script type=\"text/javascript\" src=\"/snow/snow.js\"></script>");
+						document.write("<style type=\"text/css\">.snow-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;}</style>");
+						document.write("<div class=\"snow-container\"></div>");
+						return;
+					case "召唤冰霜":
+						document.write("<link rel=\"stylesheet\" href=\"/freeze/index.css\">");
+						document.write("<div class=\"hp_special_experience\">");
+						document.write("<div class=\"hol_frames_cont\">");
+						document.write("<div class=\"frame fader frost show\">");
+						document.write("<div class=\"frame_sprite frame_left\"></div>");
+						document.write("<div class=\"frame_sprite frame_right\"></div>");
+						document.write("<div class=\"frame_sprite frame_top\"></div>");
+						document.write("<div class=\"frame_sprite frame_bottom\"></div>");
+						document.write("</div>");
+						document.write("</div>");
+						document.write("</div>");
+						return;
+					case "捉住小猫":
+						open("/egg/catch-the-cat/");
+						return;
+					case "小恐龙":
+						open("/egg/chrome-dino/");
+						return;
+					// 更多自定义操作可以在此处追加case语句块，别忘了加return
+				}
+				
+				// live2d的命令
+				switch (target.value) {
+					case "你都会什么":
+						showMessage(`试试对我说：飞机大战`, 2000, 2);
+						return;
+					case "飞机大战":
+						if (window.Asteroids) {
+							if (!window.ASTEROIDSPLAYERS) window.ASTEROIDSPLAYERS = [];
+							window.ASTEROIDSPLAYERS.push(new Asteroids());
+						} else {
+							const script = document.createElement("script");
+							script.src = live2d_path + "asteroids.js";
+							document.head.appendChild(script);
+						}
+						return;
+					case "来一碗鸡汤":
+						showHitokoto()
+						return;
+					case "召唤妹妹":
+						loadOtherModel();
+						return;
+					case "换个衣服吧":
+						loadRandModel();
+						return;
+					case "关于":
+						open("/about");
+						return;
+					case "拍个照吧":
+						showMessage("照好了嘛，是不是很可爱呢？", 6000, 9);
+						Live2D.captureName = "photo.png";
+						Live2D.captureFrame = true;
+						return;
+					case "我生气了":
+						localStorage.setItem("waifu-display", Date.now());
+						showMessage("那人家呆一会再来找你玩吧~", 2000, 11);
+						document.getElementById("waifu").style.bottom = "-500px";
+						setTimeout(() => {
+							document.getElementById("waifu").style.display = "none";
+							document.getElementById("waifu-toggle").classList.add("waifu-toggle-active");
+						}, 3000);
+						return;
+					/*
+					更多自定义操作，在此处定义
+					这里写你的命令
+					case "":
+						这里写你的自定义操作
+						不要忘了加上返回
+						return;
+					*/
+				}
+				
+				// APlayer的命令
+				// 以下为与APlayer的联动命令，如果在加载live2d之前没有APlayer的对象ap，则以下命令无效
+				if (ap) {
+					// 判断是否点歌
+					if (target.value.indexOf("放一首") === 0) {
 						let keywords = target.value.substr(3);
-						
-						fetch("https://apimusic.postgraduate.top/search?offset=0&limit=30&keywords="+keywords)
+						fetch("https://apimusic.postgraduate.top/search?offset=0&limit=30&keywords=" + keywords)
 								.then(response => response.json())
 								.then(result => {
 									if (result.result.songs.length !== 0) {
-										
 										let songId = result.result.songs[0].id;
-										
-										let songName;
-										let songArtist;
-										let songCover;
-										let songUrl;
-										let songLrc;
+										let songName, songArtist, songCover, songUrl, songLrc;
 										// 获取歌曲基本信息
 										fetch("https://apimusic.postgraduate.top/song/detail?ids=" + songId)
 												.then(response => response.json())
@@ -219,29 +276,110 @@ function loadWidget(config) {
 																		.then(result => {
 																			songLrc = result.lrc.lyric;
 																			
-																			CommandAPlayer.commandAddMusic(songName, songArtist, songCover, songUrl, songLrc);
-																			
+																			// 清空播放列表
+																			ap.list.clear();
+																			// 添加一首歌
+																			ap.list.add({
+																				name: songName,
+																				artist: songArtist,
+																				cover: songCover,
+																				url: songUrl,
+																				lrc: songLrc
+																			});
+																			// 开始播放
+																			ap.play();
+																			showMessage(`人家从互联网找到了这首 ${songName}，要不要奖励人家呢~`, 2000, 2);
+																			return;
 																		});
 															});
 												});
-										
 									}
 								});
-					} else {
-						fetch("https://api.ownthink.com/bot?appid=xiaosi&spoken="+target.value)
-							.then(response => response.json())
-							.then(result => {
-								showMessage(result.data.info.text, 6000, 9);
-							});
 					}
-				} else {
-					console.log("Aplayer不可以联动");
-					fetch("https://api.ownthink.com/bot?appid=xiaosi&spoken="+target.value)
-						.then(response => response.json())
-						.then(result => {
-							showMessage(result.data.info.text, 6000, 9);
-						});
+					
+					// 判断播放器控制操作
+					switch (target.value) {
+						case "播放":
+						case "播放音乐":
+						case "来点音乐":
+							ap.play();
+							showMessage("已经开始播放音乐啦~", 2000, 2);
+							return;
+						case "暂停":
+						case "停止":
+							ap.pause();
+							showMessage("已经暂停播放音乐啦~", 2000, 2);
+							return;
+						case "上一首":
+						case "上一曲":
+							ap.skipBack();
+							showMessage("已经切换到上一首音乐啦~", 2000, 2);
+							return;
+						case "下一首":
+						case "下一曲":
+							ap.skipForward();
+							showMessage("已经切换到下一首音乐啦~", 2000, 2);
+							return;
+						case "单曲循环":
+						case "循环":
+							ap.options.loop = "one";
+							showMessage("已经单曲循环啦~", 2000, 2);
+							return;
+						case "不循环":
+							ap.options.loop = "none";
+							showMessage("已经不循环啦~", 2000, 2);
+							return;
+						case "顺序播放":
+						case "取消单曲循环":
+						case "取消随机播放":
+							ap.options.loop = "all";
+							ap.options.order = "list";
+							showMessage("已经顺序播放啦~", 2000, 2);
+							return;
+						case "随机播放":
+							ap.options.loop = "all";
+							ap.options.order = "random";
+							showMessage("已经随机播放啦~", 2000, 2);
+							return;
+						case "音量高一点":
+						case "大点声":
+							if (volumeIndex <= 10) {
+								volumeIndex += 1;
+							}
+							ap.volume(volumeArr[volumeIndex], true);
+							return;
+						case "音量低一点":
+						case "小点声":
+							if (volumeIndex >= 0) {
+								volumeIndex -= 1;
+							}
+							ap.volume(volumeArr[volumeIndex], true);
+							showMessage(`音量已调到${volumeArr[volumeIndex] * 100}%`, 2000, 2);
+							return;
+						case "音量调到最大":
+						case "最大声":
+							ap.volume(volumeArr[10], true);
+							showMessage(`音量已调到最大`, 2000, 2);
+							return;
+						case "静音":
+						case "别出声":
+							ap.volume(volumeArr[0], true);
+							showMessage(`已经静音啦~`, 2000, 2);
+							return;
+						case "取消静音":
+							ap.volume(volumeArr[volumeIndex], true);
+							showMessage(`音量已调到${volumeArr[volumeIndex] * 100}%`, 2000, 2);
+							return;
+					}
 				}
+				
+				// 与人工智(zhi)能(zhang)对话
+				fetch("https://api.ownthink.com/bot?appid=xiaosi&spoken="+target.value)
+					.then(response => response.json())
+					.then(result => {
+						showMessage(result.data.info.text, 6000, 9);
+					});
+				return;
 				
 			}
 		}
@@ -363,6 +501,7 @@ function loadWidget(config) {
 	}
 }
 
+// 初始化live2d
 function initWidget(config, apiPath) {
 	if (typeof config === "string") {
 		config = {
