@@ -62,3 +62,6 @@ API内所有模型版权均属于原作者，仅供研究学习，不得用于�
 
 歌曲均来源于网络，本项目不存储任何歌曲
 
+## 遗留问题
+
+搜索歌曲的接口用的是别人的（现在那个网站崩了），想要自己搭建可以参考这个[https://github.com/Binaryify/NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
