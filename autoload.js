@@ -1,12 +1,17 @@
-// 注意：live2d_path 参数应使用绝对路径
-const live2d_path = "https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@5.4/";
-//const live2d_path = "./";
+// 这里定义所有live2d静态资源地址
+// 如果没有将项目下载到本地，可以使用CDN地址
+const live2d_path = "https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@latest/";
+// 如果将项目下载到了本地，可以引入本地绝对路径
+// const live2d_path = "/";
+// 在这里定义音乐搜索接口
+// music_api后台搭建方法详见：https://github.com/kilingzhang/NeteaseCloudMusicApi
+const music_api = "http://cloud-music.pl-fe.cn/";
 
 // 封装异步加载资源的方法
 function loadExternalResource(url, type) {
 	return new Promise((resolve, reject) => {
 		let tag;
-
+		
 		if (type === "css") {
 			tag = document.createElement("link");
 			tag.rel = "stylesheet";
@@ -33,32 +38,28 @@ if (screen.width >= 768) {
 	]).then(() => {
 		initWidget({
 			waifuPath: live2d_path + "waifu-tips.json",
-			// cdnPath: "https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@3.0/"
-      cdnPath: live2d_path
-    });
+			// 在这里定义模型访问地址，自己搭建详见：https://github.com/fghrsh/live2d_api
+			cdnPath: "https://cdn.jsdelivr.net/gh/fghrsh/live2d_api/"
+		});
 	});
 }
 
-// initWidget 第一个参数为 waifu-tips.json 的路径，第二个参数为 API 地址
-// API 后端可自行搭建，参考 https://github.com/fghrsh/live2d_api
-// 初始化看板娘会自动加载指定目录下的 waifu-tips.json
-
-console.log(`
-  く__,.ヘヽ.        /  ,ー､ 〉
-           ＼ ', !-─‐-i  /  /´
-           ／｀ｰ'       L/／｀ヽ､
-         /   ／,   /|   ,   ,       ',
-       ｲ   / /-‐/  ｉ  L_ ﾊ ヽ!   i
-        ﾚ ﾍ 7ｲ｀ﾄ   ﾚ'ｧ-ﾄ､!ハ|   |
-          !,/7 '0'     ´0iソ|    |
-          |.从"    _     ,,,, / |./    |
-          ﾚ'| i＞.､,,__  _,.イ /   .i   |
-            ﾚ'| | / k_７_/ﾚ'ヽ,  ﾊ.  |
-              | |/i 〈|/   i  ,.ﾍ |  i  |
-             .|/ /  ｉ：    ﾍ!    ＼  |
-              kヽ>､ﾊ    _,.ﾍ､    /､!
-              !'〈//｀Ｔ´', ＼ ｀'7'ｰr'
-              ﾚ'ヽL__|___i,___,ンﾚ|ノ
-                  ﾄ-,/  |___./
-                  'ｰ'    !_,.:
-`);
+// console.log(`
+//   く__,.ヘヽ.        /  ,ー､ 〉
+//            ＼ ', !-─‐-i  /  /´
+//            ／｀ｰ'       L/／｀ヽ､
+//          /   ／,   /|   ,   ,       ',
+//        ｲ   / /-‐/  ｉ  L_ ﾊ ヽ!   i
+//         ﾚ ﾍ 7ｲ｀ﾄ   ﾚ'ｧ-ﾄ､!ハ|   |
+//           !,/7 '0'     ´0iソ|    |
+//           |.从"    _     ,,,, / |./    |
+//           ﾚ'| i＞.､,,__  _,.イ /   .i   |
+//             ﾚ'| | / k_７_/ﾚ'ヽ,  ﾊ.  |
+//               | |/i 〈|/   i  ,.ﾍ |  i  |
+//              .|/ /  ｉ：    ﾍ!    ＼  |
+//               kヽ>､ﾊ    _,.ﾍ､    /､!
+//               !'〈//｀Ｔ´', ＼ ｀'7'ｰr'
+//               ﾚ'ヽL__|___i,___,ンﾚ|ノ
+//                   ﾄ-,/  |___./
+//                   'ｰ'    !_,.:
+// `);
