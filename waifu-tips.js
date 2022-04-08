@@ -1,6 +1,3 @@
-// APayer的音量变量
-let volumeArr = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
-let volumeIndex = 7;
 
 // 加载live2d
 function loadWidget(config) {
@@ -152,7 +149,7 @@ function loadWidget(config) {
 						return;
 					// 自定义回复请在以下添加
 					case "自定义":
-						showMessage("请在waifu-tips.js的155行附近添加自定义回复~", 2000, 11);
+						showMessage("请在waifu-tips.js的152行附近添加自定义回复~", 2000, 11);
 						return;
 				}
 				
@@ -181,131 +178,6 @@ function loadWidget(config) {
 							document.getElementById("waifu-toggle").classList.add("waifu-toggle-active");
 						}, 3000);
 						return;
-				}
-				
-				// APlayer的命令
-				// 以下为与APlayer的联动命令，如果在加载live2d之前没有APlayer的对象ap，则以下命令无效
-				if (ap) {
-					// 判断是否点歌
-					if (main_value.indexOf("放一首") === 0) {
-						let keywords = main_value.substr(3);
-						// console.log(`正在查找歌曲: ${keywords}`);
-						fetch(music_api + "search?offset=0&limit=30&keywords=" + keywords)
-								.then(response => response.json())
-								.then(result => {
-									if (result.result.songs.length !== 0) {
-										let songId = result.result.songs[0].id;
-										let songName, songArtist, songCover, songUrl, songLrc;
-										// 获取歌曲基本信息
-										fetch(music_api + "song/detail?ids=" + songId)
-												.then(response => response.json())
-												.then(result => {
-													songName = result.songs[0].name;
-													songArtist = result.songs[0].ar[0].name;
-													songCover = result.songs[0].al.picUrl;
-													// 获取歌曲链接
-													fetch(music_api + "song/url?id=" + songId)
-															.then(response => response.json())
-															.then(result => {
-																songUrl = result.data[0].url;
-																// 获取歌词
-																fetch(music_api + "lyric?id=" + songId)
-																		.then(response => response.json())
-																		.then(result => {
-																			songLrc = result.lrc.lyric;
-																			
-																			// 清空播放列表
-																			ap.list.clear();
-																			// 添加一首歌
-																			ap.list.add({
-																				name: songName,
-																				artist: songArtist,
-																				cover: songCover,
-																				url: songUrl,
-																				lrc: songLrc
-																			});
-																			// 开始播放
-																			ap.play();
-																			showMessage(`人家从互联网找到了这首 ${songName}，要不要奖励人家呢~`, 2000, 2);
-																			return;
-																		});
-															});
-												});
-									}
-								});
-					}
-					
-					// 判断播放器控制操作
-					switch (main_value) {
-						case "播放":
-						case "唱首歌吧":
-							ap.play();
-							showMessage("已经开始播放音乐啦~", 2000, 2);
-							return;
-						case "暂停":
-						case "停止":
-							ap.pause();
-							showMessage("已经暂停播放音乐啦~", 2000, 2);
-							return;
-						case "上一曲":
-							ap.skipBack();
-							showMessage("已经切换到上一首音乐啦~", 2000, 2);
-							return;
-						case "下一曲":
-							ap.skipForward();
-							showMessage("已经切换到下一首音乐啦~", 2000, 2);
-							return;
-						case "单曲循环":
-						case "循环":
-							ap.options.loop = "one";
-							showMessage("已经单曲循环啦~", 2000, 2);
-							return;
-						case "不循环":
-							ap.options.loop = "none";
-							showMessage("已经不循环啦~", 2000, 2);
-							return;
-						case "顺序播放":
-						case "取消单曲循环":
-						case "取消随机播放":
-							ap.options.loop = "all";
-							ap.options.order = "list";
-							showMessage("已经顺序播放啦~", 2000, 2);
-							return;
-						case "随机播放":
-							ap.options.loop = "all";
-							ap.options.order = "random";
-							showMessage("已经随机播放啦~", 2000, 2);
-							return;
-						case "音量高一点":
-						case "大点声":
-							if (volumeIndex <= 10) {
-								volumeIndex += 1;
-							}
-							ap.volume(volumeArr[volumeIndex], true);
-							return;
-						case "音量低一点":
-						case "小点声":
-							if (volumeIndex >= 0) {
-								volumeIndex -= 1;
-							}
-							ap.volume(volumeArr[volumeIndex], true);
-							showMessage(`音量已调到${volumeArr[volumeIndex] * 100}%`, 2000, 2);
-							return;
-						case "音量调到最大":
-						case "最大声":
-							ap.volume(volumeArr[10], true);
-							showMessage(`音量已调到最大`, 2000, 2);
-							return;
-						case "静音":
-						case "别出声":
-							ap.volume(volumeArr[0], true);
-							showMessage(`已经静音啦~`, 2000, 2);
-							return;
-						case "取消静音":
-							ap.volume(volumeArr[volumeIndex], true);
-							showMessage(`音量已调到${volumeArr[volumeIndex] * 100}%`, 2000, 2);
-							return;
-					}
 				}
 				
 				// 与人工智(zhi)能(zhang)对话

@@ -3,9 +3,6 @@
 const live2d_path = "https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@latest/";
 // 如果将项目下载到了本地，可以引入本地绝对路径
 // const live2d_path = "/";
-// 在这里定义音乐搜索接口
-// music_api后台搭建方法详见：https://github.com/kilingzhang/NeteaseCloudMusicApi
-const music_api = "http://cloud-music.pl-fe.cn/";
 
 // 封装异步加载资源的方法
 function loadExternalResource(url, type) {
