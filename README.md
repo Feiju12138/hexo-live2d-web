@@ -46,15 +46,15 @@ Fork from `https://github.com/stevenjoezhang/live2d-widget`
 
 ## 参考文献
 
-[https://github.com/fghrsh/demo](https://github.com/fghrsh/live2d_demo)
+<https://github.com/fghrsh/live2d_demo>
 
-[https://github.com/fghrsh/live2d_api](https://github.com/fghrsh/live2d_api)
+<https://github.com/fghrsh/live2d_api>
 
-[https://github.com/stevenjoezhang/live2d-widget](https://github.com/stevenjoezhang/live2d-widget)
+<https://github.com/stevenjoezhang/live2d-widget>
 
-[https://aplayer.js.org/#/zh-Hans/?id=事件绑定](https://aplayer.js.org/#/zh-Hans/?id=事件绑定)
+<https://aplayer.js.org/#/zh-Hans/?id=事件绑定>
 
-[https://github.com/Binaryify/NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
+<https://github.com/Binaryify/NeteaseCloudMusicApi>
 
 ## 版权声明
 
