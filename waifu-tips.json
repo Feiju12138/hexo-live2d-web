@@ -1,31 +1,9 @@
 {
+	"?waifu-tips.json": "在这个文件里设置基础气泡",
+	"?mousiover": "在这里设置抚摸事件",
 	"mouseover": [{
-		"selector": "#live2d",
-		"text": ["不要摸人家了，人家会告诉主人来打你的！", "有...有点舒服呢~", "嗯~", "想要...好想要那个~", "摸的人家好难受呀~", "觉得...很舒服呢~", "好奇怪...痒痒的呢~", "感觉...好羞耻...", "好奇怪...麻酥酥的~", "好奇怪...软软的~", "别...别靠近人家~", "别...别摸那里~"]
-	}, {
-		"selector": "#waifu-tool .fa-comment",
-		"text": ["想听人家说悄悄话嘛？"]
-	}, {
-		"selector": "#waifu-tool .fa-comments",
-		"text": ["想和人家聊聊天嘛？"]
-	}, {
-		"selector": "#waifu-tool .fa-paper-plane",
-		"text": ["要不要来玩飞机大战？(上-前进/左右-旋转/空格-发射/ESC-退出)"]
-	}, {
-		"selector": "#waifu-tool .fa-user-circle",
-		"text": ["想要看人家妹妹嘛？", "喜欢人家妹妹嘛？"]
-	}, {
-		"selector": "#waifu-tool .fa-street-view",
-		"text": ["给人家换件衣服吧~", "给人家换件小裙子吧~", "给人家换件泳衣吧~", "想看人家穿什么呀~", "人家要换衣服了哦~"]
-	}, {
-		"selector": "#waifu-tool .fa-camera-retro",
-		"text": ["你要给人家拍照呀？1 2 3 茄子~"]
-	}, {
-		"selector": "#waifu-tool .fa-info-circle",
-		"text": ["你想了解人家深浅嘛？", "了解人家多深呀？"]
-	}, {
-		"selector": "#waifu-tool .fa-times",
-		"text": ["花有再开的时候，人有重逢的时候吗..."]
+		"selector": ".menu-item-home a",
+		"text": ["你想再来一次嘛？"]
 	}, {
 		"selector": ".menu-item-home a",
 		"text": ["你想再来一次嘛？"]
@@ -42,7 +20,7 @@
 		"selector": ".menu-item-archives a",
 		"text": ["翻页比较麻烦吗，那就来看看文章归档吧！", "文章目录都整理在这里啦！"]
 	}, {
-		"selector": ".menu-item-friends a",
+		"selector": ".menu-item-links a",
 		"text": ["要去拜访一下主人的朋友们吗？"]
 	}, {
 		"selector": ".menu-item-search a",
@@ -54,20 +32,11 @@
 		"selector": ".site-author",
 		"text": ["人家的主人好看吗？", "这是人家的主人(*´∇｀*)"]
 	}, {
-		"selector": ".site-state",
-		"text": ["这是文章的统计信息~", "要不要点进去看看？"]
-	}, {
-		"selector": ".feed-link a",
+		"selector": ".menu-item-rss a",
 		"text": ["这里可以使用 RSS 订阅呢！", "利用 feed 订阅器，就能快速知道博客有没有更新了呢。"]
-	}, {
-		"selector": ".cc-opacity, .post-copyright-author",
-		"text": ["要记得规范转载哦。", "所有文章均采用 CC BY-NC-SA 4.0 许可协议~", "转载前要先注意下文章的版权协议呢。"]
 	}, {
 		"selector": ".links-of-author",
 		"text": ["这里是主人的常驻地址哦。", "这里有主人的联系方式！"]
-	}, {
-		"selector": ".followme",
-		"text": ["手机扫一下就能继续看，很方便呢~", "扫一扫，打开新世界的大门！"]
 	}, {
 		"selector": ".fancybox img, img.medium-zoom-image",
 		"text": ["点击图片可以放大呢！"]
@@ -96,9 +65,6 @@
 		"selector": "a[itemprop='discussionUrl']",
 		"text": ["要去看看评论吗？"]
 	}, {
-		"selector": ".beian a",
-		"text": ["人家也是有户口的人哦。", "人家的主人可是遵纪守法的好主人。"]
-	}, {
 		"selector": ".container a[href^='http'], .nav-link .nav-text",
 		"text": ["要去看看 <span>{text}</span> 么？", "去 <span>{text}</span> 逛逛吧。", "到 <span>{text}</span> 看看吧。"]
 	}, {
@@ -112,31 +78,10 @@
 		"text": ["这是主人的微信二维码~"]
 	}, {
 		"selector": "#alipay",
-		"text": ["这是主人的支付宝哦！"]
+		"text": ["这是主人的支付宝哦~"]
 	}, {
 		"selector": "#bitcoin",
-		"text": ["这是主人的比特币首款地址！"]
-	}, {
-		"selector": "#needsharebutton-postbottom .btn",
-		"text": ["好东西要让更多人知道才行哦。", "觉得文章有帮助的话，可以分享给更多需要的朋友呢。"]
-	}, {
-		"selector": ".need-share-button_weibo",
-		"text": ["微博？来分享一波喵！"]
-	}, {
-		"selector": ".need-share-button_wechat",
-		"text": ["分享到微信吧！"]
-	}, {
-		"selector": ".need-share-button_douban",
-		"text": ["分享到豆瓣好像也不错！"]
-	}, {
-		"selector": ".need-share-button_qqzone",
-		"text": ["QQ 空间，一键转发，耶~"]
-	}, {
-		"selector": ".need-share-button_twitter",
-		"text": ["Twitter？好像是不存在的东西？"]
-	}, {
-		"selector": ".need-share-button_facebook",
-		"text": ["emmm…FB 好像也是不存在的东西？"]
+		"text": ["这是主人的比特币收款地址~"]
 	}, {
 		"selector": ".post-nav-item a[rel='next']",
 		"text": ["来看看下一篇文章吧。", "点它可以看下一篇文章哦！", "要翻到下一篇文章吗？"]
@@ -151,25 +96,25 @@
 		"text": ["去上一页看看吧。", "点它可以后退哦！", "要翻到上一页吗？"]
 	}, {
 		"selector": "input.vnick",
-		"text": ["该怎么称呼你呢？", "留下你的尊姓大名！"]
+		"text": ["留下你的尊姓大名哦~"]
 	}, {
 		"selector": ".vmail",
-		"text": ["留下你的邮箱，不然就是无头像人士了！", "记得设置好 Gravatar 头像哦！", "为了方便通知你最新消息，一定要留下邮箱！"]
+		"text": ["为了方便通知你最新消息，一定要留下邮箱~"]
 	}, {
 		"selector": ".vlink",
-		"text": ["快快告诉人家你的家在哪里，好让人家去参观参观！"]
+		"text": ["快快告诉人家你的家在哪里，好让人家去参观参观~"]
 	}, {
 		"selector": ".veditor",
 		"text": ["想要去评论些什么吗？", "要说点什么吗？", "觉得博客不错？快来留言和主人交流吧！"]
 	}, {
 		"selector": ".vcontrol a",
-		"text": ["你会不会熟练使用 Markdown 呀？", "使用 Markdown 让评论更美观吧~"]
+		"text": ["使用 Markdown 让评论更美观吧~"]
 	}, {
 		"selector": ".vemoji-btn",
 		"text": ["要插入一个萌萌哒的表情吗？", "要来一发表情吗？"]
 	}, {
 		"selector": ".vpreview-btn",
-		"text": ["要预览一下你的发言吗？", "快看看你的评论有多少负熵！"]
+		"text": ["要预览一下你的发言吗？"]
 	}, {
 		"selector": ".vsubmit",
 		"text": ["评论没有审核，要对自己的发言负责哦~", "要提交了吗，请耐心等待回复哦~"]
@@ -177,6 +122,7 @@
 		"selector": ".vcontent",
 		"text": ["哇，快看看这个精彩评论！", "如果有疑问，请尽快留言哦~"]
 	}],
+	"?click": "在这里设置点击事件",
 	"click": [{
 		"selector": "#live2d",
 		"text": ["非礼呀！", "救命呀！", "别捏我！", "你弄疼我了~", "不要呀！"]
@@ -187,6 +133,7 @@
 		"selector": ".vsubmit",
 		"text": ["输入验证码就可以提交评论啦~"]
 	}],
+	"?seasons": "在这里设置日期事件",
 	"seasons": [{
 		"date": "01/01",
 		"text": "<span>元旦</span>了呢，新的一年又开始了，今年是{year}年~"
@@ -219,15 +166,9 @@
 		"text": "<span>国庆节</span>到了，为祖国母亲庆生！"
 	}, {
 		"date": "11/05-11/12",
-		"text": "今年的<span>双十一</span>是和谁一起过的呢~"
+		"text": "今年的<span>双十一</span>，主人肯定又去剁手买买买了~"
 	}, {
 		"date": "12/20-12/31",
-		"text": "这几天是<span>圣诞节</span>，主人肯定又去剁手买买买了~"
-	}, {
-		"date": "2/10",
-		"text": "今天是主人的生日哟，快来祝主人生日快乐吧~"
-	}, {
-		"date": "11/20",
-		"text": "今天是站点的周年纪念日哟，快来一起庆祝吧~"
+		"text": "这几天是<span>圣诞节</span>是和谁一起过的呢~"
 	}]
 }
