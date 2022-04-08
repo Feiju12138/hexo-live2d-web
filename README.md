@@ -5,11 +5,15 @@ Fork from `https://github.com/stevenjoezhang/live2d-widget`
 
 ## 傻瓜式一键引入最新版
 
+- 无Aplayer联动的版本
+
 ``` html
 <script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@latest/autoload.js"></script>
 ```
 
 ### 引入与APlayer联动的版本
+
+- 需要在引入APlayer之后引入
 
 ``` html
 <script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@6.0/autoload.js"></script>
@@ -18,7 +22,7 @@ Fork from `https://github.com/stevenjoezhang/live2d-widget`
 ### 引入无Aplayer联动的版本
 
 ``` html
-<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@6.1/autoload.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Feiju12138/hexo-live2d-web@7.0/autoload.js"></script>
 ```
 
 ## 参考文献
