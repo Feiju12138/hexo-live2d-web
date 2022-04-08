@@ -29,7 +29,7 @@ Fork from `https://github.com/stevenjoezhang/live2d-widget`
 
 ## 新特性
 
-- 在`[stevenjoezhang/live2d-widget](https://github.com/stevenjoezhang/live2d-widget)`的基础上，新增如下功能
+- 在[stevenjoezhang/live2d-widget](https://github.com/stevenjoezhang/live2d-widget)的基础上，新增如下功能
 
 - 添加了对话功能，点击live2d，即可实现与live2d对话，可以与人工智能聊天
 - 去除了live2d右侧的一排按钮，将所有按钮的执行内容整合到了对话中，对话时如果触发了特定指令，会实现原按钮的操作
