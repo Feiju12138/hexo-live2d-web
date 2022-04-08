@@ -46,7 +46,7 @@ Fork from `https://github.com/stevenjoezhang/live2d-widget`
 
 ## 参考文献
 
-[https://github.com/fghrsh/demo](https://github.com/fghrsh/demo)
+[https://github.com/fghrsh/demo](https://github.com/fghrsh/live2d_demo)
 
 [https://github.com/fghrsh/live2d_api](https://github.com/fghrsh/live2d_api)
 
