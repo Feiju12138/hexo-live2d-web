@@ -21,14 +21,8 @@ function loadWidget(config) {
 			<div id="waifu-tips"></div>
 			<canvas id="live2d" width="800" height="800"></canvas>
 			<div id="waifu-tool">
-				<span class="fa fa-lg fa-comment"></span>
-				<span class="fa fa-lg fa-comments"></span>
-				<span class="fa fa-lg fa-paper-plane"></span>
-				<span class="fa fa-lg fa-user-circle"></span>
-				<span class="fa fa-lg fa-street-view"></span>
-				<span class="fa fa-lg fa-camera-retro"></span>
-				<span class="fa fa-lg fa-info-circle"></span>
-				<span class="fa fa-lg fa-times"></span>
+<!--				<span class="fa fa-lg fa-comments"></span>-->
+<!--				<span class="fa fa-lg fa-times"></span>-->
 			</div>
 		</div>`);
 	setTimeout(() => {
@@ -58,39 +52,8 @@ function loadWidget(config) {
 	}, 1000);
 
 	(function registerEventListener() {
-		document.querySelector("#waifu-tool .fa-comment").addEventListener("click", showHitokoto);
-		document.querySelector("#waifu-tool .fa-comments").addEventListener("click", chatTogether);
-		document.querySelector("#waifu-tool .fa-paper-plane").addEventListener("click", () => {
-			if (window.Asteroids) {
-				if (!window.ASTEROIDSPLAYERS) window.ASTEROIDSPLAYERS = [];
-				window.ASTEROIDSPLAYERS.push(new Asteroids());
-			} else {
-				const script = document.createElement("script");
-				script.src = live2d_path + "asteroids.js";
-				document.head.appendChild(script);
-			}
-		});
-		document.querySelector("#waifu-tool .fa-user-circle").addEventListener("click", loadOtherModel);
-		document.querySelector("#waifu-tool .fa-street-view").addEventListener("click", loadRandModel);
-		document.querySelector("#waifu-tool .fa-camera-retro").addEventListener("click", () => {
-			showMessage("照好了嘛，是不是很可爱呢？", 6000, 9);
-			Live2D.captureName = "photo.png";
-			Live2D.captureFrame = true;
-		});
-		document.querySelector("#waifu-tool .fa-info-circle").addEventListener("click", () => {
-			open("/about");
-		});
-		document.querySelector("#waifu-tool .fa-times").addEventListener("click", () => {
-			localStorage.setItem("waifu-display", Date.now());
-			showMessage("愿你有一天能与重要的人重逢。", 2000, 11);
-			document.getElementById("waifu").style.bottom = "-500px";
-			setTimeout(() => {
-				document.getElementById("waifu").style.display = "none";
-				document.getElementById("waifu-toggle").classList.add("waifu-toggle-active");
-			}, 3000);
-		});
 		const devtools = () => {};
-		console.log("%c", devtools);
+		// console.log("%c", devtools);
 		devtools.toString = () => {
 			showMessage("哈哈，你打开了控制台，是想要看看我的小秘密吗？", 6000, 9);
 		};
@@ -126,11 +89,11 @@ function loadWidget(config) {
 		} else {
 			text = `欢迎阅读<span>「${document.title.split(" - ")[0]}」</span>`;
 		}
+		showMessage(text, 7000, 8);
 		
 		// APlayer联动
 		if (ap) {
-			text += " 检测到APlayer啦，开始联动！你可以对我说：来点音乐";
-			
+			// console.log("Live2d & APlayer 开始联动")
 			let lrcTmp = "";
 			ap.on("timeupdate", function() {
 				let lrcCurrent = document.querySelector(".aplayer-lrc-contents .aplayer-lrc-current").innerHTML;
@@ -141,10 +104,9 @@ function loadWidget(config) {
 				}
 			});
 		}
-		
-		showMessage(text, 7000, 8);
 	})();
 
+	// 一言功能
 	function showHitokoto() {
 		// 增加 hitokoto.cn 的 API
 		fetch("https://v1.hitokoto.cn")
@@ -154,6 +116,7 @@ function loadWidget(config) {
 			});
 	}
 	
+	// 聊天功能
 	function chatTogether() {
 		// 获取气泡对象
 		const tips = document.getElementById("waifu-tips");
@@ -161,12 +124,14 @@ function loadWidget(config) {
 		sessionStorage.removeItem("waifu-text");
 		tips.classList.remove("waifu-tips-active");
 		// 在气泡上添加文本域
-		let text = "<textarea cols='29' rows='4' id='chatInput'>";
+		let text = `<textarea cols='29' rows='4' id='chatInput'>${"> "}</textarea>`;
 		showMessage(text, 60000, 8);
 		// 获取输入框对象
 		let chat = document.getElementById('chatInput');
 		// 自动成为焦点
 		chat.focus();
+		// 光标移到末尾
+		chat.selectionStart = chat.selectionEnd = chat.value.length;
 		// 添加键盘按下事件
 		chat.onkeydown = function (e) {
 			let {keyCode,target} = e;
@@ -175,103 +140,34 @@ function loadWidget(config) {
 				sessionStorage.removeItem("waifu-text");
 				tips.classList.remove("waifu-tips-active");
 				
-				// 站点的命令
-				switch (target.value) {
+				// 截取主要内容
+				let main_value = target.value.substr(2);
+				
+				// 其他的命令
+				switch (main_value) {
 					case "回到顶部":
 						document.documentElement.scrollTop = 0;
 						return;
-					// 以下是我的自定义命令，可能不通用
-					case "召唤雪花":
-						
-						let snowCSS = document.createElement("link");
-						snowCSS.setAttribute("rel", "stylesheet");
-						snowCSS.setAttribute("href", "/snow/index.css");
-						let snowJQ = document.createElement("script");
-						snowJQ.setAttribute("type", "text/javascript");
-						snowJQ.setAttribute("src", "/snow/jquery-1.7.2.min.js");
-						let snowJS = document.createElement("script");
-						snowJS.setAttribute("type", "text/javascript");
-						snowJS.setAttribute("src", "/snow/index.js");
-						let snowDiv = document.createElement("div");
-						snowDiv.setAttribute("class", "snow-container");
-						
-						document.body.appendChild(snowCSS);
-						document.body.appendChild(snowJQ);
-						document.body.appendChild(snowJS);
-						document.body.appendChild(snowDiv);
-						
-						showMessage(`下雪啦~`, 2000, 2);
+					// 在这里添加自定义命令
+					case "自定义":
+						// 操作
+						showMessage("请在waifu-tips.ja的151行附近添加自定义命令", 6000, 9);
 						return;
-					case "召唤冰霜":
-						
-						let freezeCSS = document.createElement("link");
-						freezeCSS.setAttribute("rel", "stylesheet");
-						freezeCSS.setAttribute("href", "/freeze/index.css");
-						
-						let freezeDiv1 = document.createElement("div");
-						freezeDiv1.setAttribute("class", "hp_special_experience");
-						let freezeDiv2 = document.createElement("div");
-						freezeDiv2.setAttribute("class", "hol_frames_cont");
-						let freezeDiv3 = document.createElement("div");
-						freezeDiv3.setAttribute("class", "frame fader frost show");
-						let freezeDiv4 = document.createElement("div");
-						freezeDiv4.setAttribute("class", "frame_sprite frame_left");
-						let freezeDiv5 = document.createElement("div");
-						freezeDiv5.setAttribute("class", "frame_sprite frame_right");
-						let freezeDiv6 = document.createElement("div");
-						freezeDiv6.setAttribute("class", "frame_sprite frame_top");
-						let freezeDiv7 = document.createElement("div");
-						freezeDiv7.setAttribute("class", "frame_sprite frame_bottom");
-						
-						document.body.appendChild(freezeCSS);
-						freezeDiv1.appendChild(freezeDiv2);
-						freezeDiv2.appendChild(freezeDiv3);
-						freezeDiv3.appendChild(freezeDiv4);
-						freezeDiv3.appendChild(freezeDiv5);
-						freezeDiv3.appendChild(freezeDiv6);
-						freezeDiv3.appendChild(freezeDiv7);
-						document.body.appendChild(freezeDiv1);
-						
-						showMessage(`结冰啦~`, 2000, 2);
-						return;
-					case "捉住小猫":
-						open("/egg/catch-the-cat/");
-						return;
-					case "小恐龙":
-						open("/egg/chrome-dino/");
-						return;
-					// 更多自定义操作可以在此处追加case语句块，别忘了加return
 				}
 				
 				// live2d的命令
-				switch (target.value) {
-					case "你都会什么":
-						showMessage(`试试对我说：飞机大战`, 2000, 2);
-						return;
-					case "飞机大战":
-						if (window.Asteroids) {
-							if (!window.ASTEROIDSPLAYERS) window.ASTEROIDSPLAYERS = [];
-							window.ASTEROIDSPLAYERS.push(new Asteroids());
-						} else {
-							const script = document.createElement("script");
-							script.src = live2d_path + "asteroids.js";
-							document.head.appendChild(script);
-						}
-						return;
-					case "来一碗鸡汤":
-						showHitokoto()
-						return;
+				switch (main_value) {
 					case "召唤妹妹":
 						loadOtherModel();
 						return;
-					case "换个衣服吧":
+					case "换个裙子吧":
 						loadRandModel();
 						return;
-					case "关于":
+					case "主人是谁":
 						open("/about");
 						return;
 					case "拍个照吧":
-						showMessage("照好了嘛，是不是很可爱呢？", 6000, 9);
+						showMessage("照好了嘛，人家是不是很可爱？", 6000, 9);
 						Live2D.captureName = "photo.png";
 						Live2D.captureFrame = true;
 						return;
@@ -284,42 +180,35 @@ function loadWidget(config) {
 							document.getElementById("waifu-toggle").classList.add("waifu-toggle-active");
 						}, 3000);
 						return;
-					/*
-					更多自定义操作，在此处定义
-					这里写你的命令
-					case "":
-						这里写你的自定义操作
-						不要忘了加上返回
-						return;
-					*/
 				}
 				
 				// APlayer的命令
 				// 以下为与APlayer的联动命令，如果在加载live2d之前没有APlayer的对象ap，则以下命令无效
 				if (ap) {
 					// 判断是否点歌
-					if (target.value.indexOf("放一首") === 0) {
-						let keywords = target.value.substr(3);
-						fetch("https://apimusic.postgraduate.top/search?offset=0&limit=30&keywords=" + keywords)
+					if (main_value.indexOf("放一首") === 0) {
+						let keywords = main_value.substr(3);
+						// console.log(`正在查找歌曲: ${keywords}`);
+						fetch(music_api + "search?offset=0&limit=30&keywords=" + keywords)
 								.then(response => response.json())
 								.then(result => {
 									if (result.result.songs.length !== 0) {
 										let songId = result.result.songs[0].id;
 										let songName, songArtist, songCover, songUrl, songLrc;
 										// 获取歌曲基本信息
-										fetch("https://apimusic.postgraduate.top/song/detail?ids=" + songId)
+										fetch(music_api + "song/detail?ids=" + songId)
 												.then(response => response.json())
 												.then(result => {
 													songName = result.songs[0].name;
 													songArtist = result.songs[0].ar[0].name;
 													songCover = result.songs[0].al.picUrl;
 													// 获取歌曲链接
-													fetch("https://apimusic.postgraduate.top/song/url?id=" + songId)
+													fetch(music_api + "song/url?id=" + songId)
 															.then(response => response.json())
 															.then(result => {
 																songUrl = result.data[0].url;
 																// 获取歌词
-																fetch("https://apimusic.postgraduate.top/lyric?id=" + songId)
+																fetch(music_api + "lyric?id=" + songId)
 																		.then(response => response.json())
 																		.then(result => {
 																			songLrc = result.lrc.lyric;
@@ -346,10 +235,9 @@ function loadWidget(config) {
 					}
 					
 					// 判断播放器控制操作
-					switch (target.value) {
+					switch (main_value) {
 						case "播放":
-						case "播放音乐":
-						case "来点音乐":
+						case "唱首歌吧":
 							ap.play();
 							showMessage("已经开始播放音乐啦~", 2000, 2);
 							return;
@@ -358,12 +246,10 @@ function loadWidget(config) {
 							ap.pause();
 							showMessage("已经暂停播放音乐啦~", 2000, 2);
 							return;
-						case "上一首":
 						case "上一曲":
 							ap.skipBack();
 							showMessage("已经切换到上一首音乐啦~", 2000, 2);
 							return;
-						case "下一首":
 						case "下一曲":
 							ap.skipForward();
 							showMessage("已经切换到下一首音乐啦~", 2000, 2);
@@ -466,6 +352,11 @@ function loadWidget(config) {
 				window.addEventListener("mouseover", event => {
 					for (let { selector, text } of result.mouseover) {
 						if (!event.target.matches(selector)) continue;
+						// 如果抚摸的是live2d，则开启一言
+						if (selector==="#live2d") {
+							showHitokoto();
+							return;
+						}
 						text = randomSelection(text);
 						text = text.replace("{text}", event.target.innerText);
 						showMessage(text, 4000, 8);
@@ -475,6 +366,11 @@ function loadWidget(config) {
 				window.addEventListener("click", event => {
 					for (let { selector, text } of result.click) {
 						if (!event.target.matches(selector)) continue;
+						// 如果点击的是live2d，则开启对话模式
+						if (selector==="#live2d") {
+							chatTogether();
+							return;
+						}
 						text = randomSelection(text);
 						text = text.replace("{text}", event.target.innerText);
 						showMessage(text, 4000, 8);
@@ -510,7 +406,7 @@ function loadWidget(config) {
 			loadlive2d("live2d", `${cdnPath}model/${target}/index.json`);
 		} else {
 			loadlive2d("live2d", `${apiPath}get/?id=${modelId}-${modelTexturesId}`);
-			console.log(`Live2D 模型 ${modelId}-${modelTexturesId} 加载完成`);
+			// console.log(`Live2D 模型 ${modelId}-${modelTexturesId} 加载完成`);
 		}
 	}
 
