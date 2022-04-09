@@ -47,9 +47,51 @@ Fork from `https://github.com/stevenjoezhang/live2d-widget`
 - 支持live2d监视Aplayer的歌词，朗诵歌词
 - 支持通过特定语法在互联网上搜索歌曲，自动添加到Aplayer进行播放
 
+![01.png](https://inews.gtimg.com/newsapp_ls/0/14723103233/0.png)
+
 ### 7.0新特性
 
 - 7.0是纯净版，去除了Aplayer联动的相关代码
+
+## 指令
+
+### 基本指令
+
+6.0与7.0均有效
+
+- 召唤妹妹（更换模型）
+- 换个裙子吧（更换皮肤）
+- 拍个照吧（截图）
+- 我生气了（临时关闭）
+
+例如：召唤妹妹
+
+![02.png](https://inews.gtimg.com/newsapp_ls/0/14723120451/0.png)
+
+### 6.0与Aplayer联动的指令
+
+仅当使用6.0且在Aplayer引入之后再引入live2d的情况下有效
+
+- 唱首歌吧
+- 播放
+- 暂停
+- 停止
+- 上一曲
+- 下一曲
+- 单曲循环
+- 取消单曲循环
+- 顺序播放
+- 随机播放
+- 大点声
+- 小点声
+- 别出声
+- 最大声
+- 取消静音
+- 放一首+歌名
+
+例如：放一首下山
+
+![03.png](https://inews.gtimg.com/newsapp_ls/0/14723125410/0.png)
 
 ## 参考文献
 
