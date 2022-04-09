@@ -1,7 +1,9 @@
 
 # Live2D Web
 
-Fork from `https://github.com/stevenjoezhang/live2d-widget`
+优化了[stevenjoezhang/live2d-widget](https://github.com/stevenjoezhang/live2d-widget)的live2d，是一个可以交互的人工智能（zhang）
+
+[查看示例](https://feiju12138.github.io/command/)
 
 ## 傻瓜式一键引入最新版
 
